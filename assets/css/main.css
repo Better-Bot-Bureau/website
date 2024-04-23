@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+  :root {
+    --g1: #3b82f6;
+    --g2: rgb(74, 94, 207);
+    margin: 0;
+      padding: 0;
+  }
+  @keyframes background-pan {
+    from {
+      background-position: 0% center;
+    }
+    
+    to {
+      background-position: -200% center;
+    }
+  }
+
+  body {
+
+    height: 100vh;
+   background-color: rgb(10, 10, 10);
+  }
+
+  body::-webkit-scrollbar {
+    width: 0.25rem;
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #1e1e24;
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background: var(--g1);
+  }
+
+  .link:hover {
+    color: var(--g1);
+    transition: color .1s,background .1s,background-color .1s;
+    cursor: pointer;
+  }
