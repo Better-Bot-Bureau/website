@@ -28,8 +28,16 @@ export const useAuth = defineStore("auth", {
             return data
         },
         async getBot(id: String){
-            console.log("auth module")
+         
             let data = await userService.getBot(id)
+            return data
+        },
+        async getGuilds(id: String) {
+            let data = await userService.getGuilds(id)
+            return data
+        },
+        async leaveGuild(id: String, guildId: String) {
+            let data = await userService.leaveGuild(id, guildId)
             return data
         }
     },

@@ -5,18 +5,18 @@
         <div class="flex flex-row text-white font-bold items-center mt-2"><img  class="image1 image2 mr-3 ml-3" :src=bot.avatar>{{ bot.username }}
         </div>
         <div class="dash-category">Overview</div>
-        <NuxtLink id="overview" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id"><HomeIcon class=" h-4 w-4 mr-1"/>Overview</NuxtLink>
-        <NuxtLink id="settings" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/settings'"><AdjustmentsHorizontalIcon class="h-4 w-4 mr-1"/>Settings</NuxtLink>
-        <NuxtLink id="servers" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/servers'"><ListBulletIcon class="h-4 w-4 mr-1"/>Servers</NuxtLink>
-        <NuxtLink id="status" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/status'"><WrenchIcon class="h-4 w-4 mr-1"/>Status</NuxtLink>
-        <NuxtLink id="invite" class="dash-button text-white font-bold link" @click="invite"><LinkIcon class="h-4 w-4 mr-1"/>Invite</NuxtLink>
-        <NuxtLink id="premium" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/premium'"><CurrencyDollarIcon class="h-4 w-4 mr-1"/>Premium</NuxtLink>
+        <NuxtLink id="overview" v-bind:class="{ 'blu': $route.path == `/dashboard/bot/${$route.params.id}` }" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id"><HomeIcon class=" h-4 w-4 mr-1"/>Overview</NuxtLink>
+        <NuxtLink id="settings" v-bind:class="{ 'blu': $route.path == `/dashboard/bot/${$route.params.id}/settings` }" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/settings'"><AdjustmentsHorizontalIcon class="h-4 w-4 mr-1"/>Settings</NuxtLink>
+        <NuxtLink id="servers" v-bind:class="{ 'blu': $route.path == `/dashboard/bot/${$route.params.id}/servers` }" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/servers'"><ListBulletIcon class="h-4 w-4 mr-1"/>Servers</NuxtLink>
+        <NuxtLink id="status" v-bind:class="{ 'blu': $route.path == `/dashboard/bot/${$route.params.id}/status` }" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/status'"><WrenchIcon class="h-4 w-4 mr-1"/>Status</NuxtLink>
+        <NuxtLink id="invite"  class="dash-button text-white font-bold link" @click="invite" :to="'/dashboard/bot/' + $route.params.id"><LinkIcon class="h-4 w-4 mr-1"/>Invite</NuxtLink>
+        <NuxtLink id="premium" v-bind:class="{ 'blu': $route.path == `/dashboard/bot/${$route.params.id}/premium` }" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/premium'"><CurrencyDollarIcon class="h-4 w-4 mr-1"/>Premium</NuxtLink>
         <div class="dash-category">Help</div>
-        <NuxtLink id="support" class="dash-button text-white font-bold link" to="https://discord.gg/PEC49VkA" external="true"><QuestionMarkCircleIcon class="h-4 w-4 mr-1"/>Support Server</NuxtLink>
+        <NuxtLink id="support" class="dash-button text-white font-bold link" to="https://discord.gg/PEC49VkA" external=true><QuestionMarkCircleIcon class="h-4 w-4 mr-1"/>Support Server</NuxtLink>
+        <div class="dash-category">Integrations</div>
+        <NuxtLink id="SD-Ads" v-bind:class="{ 'red': $route.path == `/dashboard/bot/${$route.params.id}/sd-ads` }" class="dash-button text-white font-bold link-red" :to="'/dashboard/bot/' + $route.params.id + '/sd-ads'"> <img src="/img/LogoWhtSDAd.webp" class="h-4 w-4 mr-1"/> SD Ads</NuxtLink>
         <div class="dash-category">Modules</div>
-        <NuxtLink id="premium" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/modules/management'"><CurrencyDollarIcon class="h-4 w-4 mr-1"/>Management</NuxtLink>
-        <NuxtLink id="premium" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/modules/engagement'"><CurrencyDollarIcon class="h-4 w-4 mr-1"/>Engagement</NuxtLink>
-        
+       
     </div>
 </div>
 </template>
@@ -32,7 +32,8 @@ export default {
  data() {
     return{
      
-        bot: {}
+        bot: {},
+        interval: null
     }
   },
   computed: {
@@ -41,14 +42,17 @@ export default {
    mounted() {
     this.getBot()
      
+   this.interval = setInterval(() => {
+        this.getBot()
+    }, 5000)
   },created() {
     
   },
   methods: {
     invite: function() {
     
-        window.open(`https://discord.com/api/oauth2/authorize?client_id=${this.$route.params.id.split("=")[1]}&permissions=402655248&scope=bot%20applications.commands`, "", "menubar=no,resizable=no,width=500,height=850")
-        
+       let win = window.open(`https://discord.com/api/oauth2/authorize?client_id=${this.$route.params.id.split("=")[1]}&permissions=402655248&scope=bot%20applications.commands`, "", "menubar=no,resizable=no,width=500,height=850")
+      
     },
     async getBot() {
       let res = await useAuth().getBot(this.$route.params.id.split("=")[1])
@@ -58,7 +62,10 @@ export default {
        
        
     }
-  }
+  },
+  unmounted() {
+    clearInterval(this.interval);
+  },
 }
 </script>
 

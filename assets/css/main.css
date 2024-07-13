@@ -8,15 +8,7 @@
     margin: 0;
       padding: 0;
   }
-  @keyframes background-pan {
-    from {
-      background-position: 0% center;
-    }
-    
-    to {
-      background-position: -200% center;
-    }
-  }
+ 
 
   body {
 
@@ -40,4 +32,24 @@
     color: var(--g1);
     transition: color .1s,background .1s,background-color .1s;
     cursor: pointer;
+  }
+
+  .link-red:hover {
+    color: #ff1212;
+    transition: color .1s,background .1s,background-color .1s;
+    cursor: pointer;
+  }
+
+  .bg-gray-1000 {
+    --tw-bg-opacity: 1;
+   
+    background-color: rgb(12 14 12 / var(--tw-bg-opacity));
+  }
+  
+  .blu {
+    color: var(--g1);
+  }
+
+  .red {
+    color: #ff1212
   }

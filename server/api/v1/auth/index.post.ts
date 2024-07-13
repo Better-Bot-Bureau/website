@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
         }
 
         //fetch user info from OAuth2 token
-        await $fetch('https://discord.com/api/users/@me', {
+        await $fetch('https://discord.com/oauth2/@me', {
             headers: {
                 authorization: `${oath.token_type} ${oath.access_token}`,
             },
@@ -44,7 +44,7 @@ export default defineEventHandler(async (event) => {
         if(!userInfo){
             return;
         }
-
+        console.log(oath)
         let encryptToken = encrypt(oath.access_token)
 
         await userSchema.findOneAndUpdate({id: userInfo.id}, {username: userInfo.username, avatar: userInfo.avatar, token: encryptToken}, {upsert: true, new: true})

@@ -7,12 +7,22 @@ class UserService {
 
     }
     async getBot(id: String) {
-       console.log("user service")
+
         let data = await $fetch("/api/v1/bot", { method: 'get', params: {bot_id: id }  })
 
         return data
 
     }
-}
+    async getGuilds(id: String) {
+        let data = await $fetch("/api/v1/bot/info/guilds", { method: 'get', params: {bot_id: id }  })
+
+        return data
+    }
+    async leaveGuild(id: String, guildId: String) {
+        let data = await $fetch("/api/v1/bot/guilds/leave", { method: 'post', params: {bot_id: id, guild_id: guildId}})
+
+        return data
+    }
+} 
 
 export default new UserService()

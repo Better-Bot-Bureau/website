@@ -6,8 +6,6 @@ export default defineNuxtConfig({
     encryptionInitalVector: process.env.INITAL_VECTOR
   },
 
-  devtools: { enabled: true },
-
   css: ['~/assets/css/main.css'],
 
   postcss: {
