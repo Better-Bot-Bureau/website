@@ -62,6 +62,7 @@ export default {
       console.log(res)
       if(res){
           this.servers = res
+          console.log(res)
           this.number1++
         }else{
           this.servers = []

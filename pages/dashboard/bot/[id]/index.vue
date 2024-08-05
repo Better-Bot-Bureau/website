@@ -8,7 +8,7 @@ definePageMeta({
   <div class="flex flex-row m-10 justify-around ">
 
     <div class="card bg-dark">
-			<div class="card-body bg-dark">
+			<div class="card-body ">
 				<h5 class="card-title font-bold" id="players_online">Bot Username:</h5>
 					<p class="card-text"><span id="connectedPlayers"> {{bot.username}}</span></p>		
           <div class="flex my-5 flex-row h-11 ">
@@ -19,7 +19,7 @@ definePageMeta({
 			</div>
 		</div>
     <div class="card bg-dark">
-			<div class="card-body bg-dark">
+			<div class="card-body ">
 				<h5 class="card-title font-bold" id="players_online">Bot Status:</h5>
 					<p class="card-text"><span id="connectedPlayers"> N/A</span> </p>		
           <div class="flex my-5 flex-row h-11 ">
@@ -32,7 +32,7 @@ definePageMeta({
 			</div>
 		</div>
     <div class="card bg-dark">
-			<div class="card-body bg-dark">
+			<div class="card-body ">
 				<h5 class="card-title font-bold" id="players_online">Bot Avatar:</h5>
         <div class="flex my-5 flex-row absolute bottom-0 w-11/12 h-11 ">
           <input type="file" autocomplete="off" id="tokeninput"  placeholder="New name" style="background-color: #0c0e0c" class=" border-2  text-gray-900 text-sm rounded-lg hover:border-gray-400 focus:border-blue-500  w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -49,19 +49,19 @@ definePageMeta({
   <div class="flex flex-row m-10 justify-around ">
 
 <div class="card bg-dark">
-  <div class="card-body-tall  bg-dark">
+  <div class="card-body-tall  ">
     <h5 class="card-title font-bold" id="players_online">Online users:</h5>
       <Line :data="data" :options="options" ></Line>
   </div>
 </div>
 <div class="card bg-dark">
-  <div class="card-body-tall bg-dark">
+  <div class="card-body-tall ">
     <h5 class="card-title font-bold" id="players_online">Messages:</h5>
     <Line :data="data" :options="options" ></Line>
   </div>
 </div>
 <div class="card bg-dark">
-  <div class="card-body-tall bg-dark">
+  <div class="card-body-tall ">
     <h5 class="card-title font-bold" id="players_online">Servers:</h5>
     <Line :data="data2" :options="options" ></Line>
     

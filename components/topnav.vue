@@ -1,6 +1,6 @@
 <template>
   
-<nav class=" border-gray-200 z-50 relative" style="background:#0c0e0c; filter: drop-shadow(3px 20px 10px rgba(0, 0, 0, 0.1)); box-shadow: 2px 5px 10px;">
+<nav class=" border-gray-200 z-50 relative" style="background:#0c0e0c;  box-shadow: 2px 5px 10px;">
   <div class="  flex flex-wrap items-center justify-end  p-2 background-color:#0c0e0c h-14" >
     
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">

@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
       let botInfo: userInfoResponse | undefined
 
-      await $fetch('https://discord.com/oauth2/applications/@me', {
+      await $fetch('https://discord.com/api/users/@me', {
           headers: {
               authorization: `Bot ${decrypt(bot.token as string)}`,
           },
@@ -26,13 +26,17 @@ export default defineEventHandler(async (event) => {
           setResponseStatus(event, 500)
           return {message: "Invalid bot token"}
       }
-
+      console.log(botInfo)
       if(bot.avatar !== botInfo.avatar) {
+        console.log(bot.avatar)
+        console.log(botInfo.avatar)
         await botSchema.findByIdAndUpdate(b, {avatar: botInfo.avatar})
-        bots.push({username: botInfo.username, avatar: `https://cdn.discordapp.com/avatars/${bot?.id}/${botInfo.avatar}.webp?size=512`, id: bot?.id})
+         bots.push({username: botInfo.username, avatar: `https://cdn.discordapp.com/avatars/${bot?.id}/${botInfo.avatar}.webp?size=512`, id: bot?.id})
+      }else {
+        bots.push({username: botInfo.username, avatar: `https://cdn.discordapp.com/avatars/${bot?.id}/${bot?.avatar}.webp?size=512`, id: bot?.id})
+      
       }
 
-      bots.push({username: botInfo.username, avatar: `https://cdn.discordapp.com/avatars/${bot?.id}/${bot?.avatar}.webp?size=512`, id: bot?.id})
       
     }
 

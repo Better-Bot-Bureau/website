@@ -13,8 +13,6 @@
         <NuxtLink id="premium" v-bind:class="{ 'blu': $route.path == `/dashboard/bot/${$route.params.id}/premium` }" class="dash-button text-white font-bold link" :to="'/dashboard/bot/' + $route.params.id + '/premium'"><CurrencyDollarIcon class="h-4 w-4 mr-1"/>Premium</NuxtLink>
         <div class="dash-category">Help</div>
         <NuxtLink id="support" class="dash-button text-white font-bold link" to="https://discord.gg/PEC49VkA" external=true><QuestionMarkCircleIcon class="h-4 w-4 mr-1"/>Support Server</NuxtLink>
-        <div class="dash-category">Integrations</div>
-        <NuxtLink id="SD-Ads" v-bind:class="{ 'red': $route.path == `/dashboard/bot/${$route.params.id}/sd-ads` }" class="dash-button text-white font-bold link-red" :to="'/dashboard/bot/' + $route.params.id + '/sd-ads'"> <img src="/img/LogoWhtSDAd.webp" class="h-4 w-4 mr-1"/> SD Ads</NuxtLink>
         <div class="dash-category">Modules</div>
        
     </div>
@@ -134,7 +132,7 @@ img.dash-icon {
   position: relative;
   z-index: 2;
   border: 2px solid rgb(242, 244, 251);
-  filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 32px 72px);
+ 
 }
 
 .image1:not([src]){
