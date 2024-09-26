@@ -1,79 +1,81 @@
-
 <script setup>
 definePageMeta({
-    middleware: ["auth"]
-    // or middleware: 'auth'
-})
+  middleware: ["auth"],
+  // or middleware: 'auth'
+});
 </script>
 
 <template>
-
-  <div class="flex flex-col items-center justify-center h-screen w-screen top-0 mx-auto absolute">
-  <div class="flex flex-row w-6/12">
-    <NuxtLink  type="button" to="/dashboard/new"  class=" float-right w-2/12 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-2 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg mb-3 text-sm px-7 py-2.5 text-center ">Add New</NuxtLink>
-    
+  <div
+    class="absolute top-0 mx-auto flex h-screen w-screen flex-col items-center justify-center"
+  >
+    <div class="flex w-6/12 flex-row">
+      <NuxtLink
+        type="button"
+        to="/dashboard/new"
+        class="float-right mb-3 w-2/12 rounded-lg bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 px-7 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-blue-800"
+        >Add New</NuxtLink
+      >
     </div>
-    
-    <div class="flex flex-col items-center rounded-md mx-auto  w-6/12 h-4/6 " style="background:#0c0e0c; box-shadow: 0px 0px 10px; justify-content: top;">
-      
-        <div class="server-list" :key="number1">
 
+    <div
+      class="mx-auto flex h-4/6 w-6/12 flex-col items-center rounded-md"
+      style="
+        background: #0c0e0c;
+        box-shadow: 0px 0px 10px;
+        justify-content: top;
+      "
+    >
+      <div class="server-list" :key="number1">
+        <div v-for="bot of servers" :key="bot.id" class="server-container">
           <div
-          v-for="bot of servers"
-          :key="bot.id"
-          class="server-container"
-        >
-        <div class="server-background"  :style="{ backgroundImage: `url(${bot.avatar}) `  } " ></div> 
-        <h3 class="something">{{ bot.username }}</h3>
-        <img  class="image1 image2" :src=bot.avatar>
-        
-              <nuxt-link
-                
-                class="buttonthing"
-              
-                :to="'dashboard/bot/id='+bot.id"
-                >⠀</nuxt-link
-              >
-          
-        </div>
-       
-       
+            class="server-background"
+            :style="{ backgroundImage: `url(${bot.avatar}) ` }"
+          ></div>
+          <h3 class="something">{{ bot.username }}</h3>
+          <img class="image1 image2" :src="bot.avatar" />
 
+          <nuxt-link class="buttonthing" :to="'dashboard/bot/id=' + bot.id"
+            >⠀</nuxt-link
+          >
+        </div>
       </div>
     </div>
-  </div> 
-
+  </div>
 </template>
 
 <script>
 export default {
   created() {
-    this.getBots()
+    this.getBots();
   },
   data: () => {
     return {
       number1: 0,
-      servers: []
-    }
+      servers: [],
+    };
   },
   methods: {
     async getBots() {
-      let res = await useAuth().getBots()
-      console.log(res)
-      if(res){
-          this.servers = res
-          console.log(res)
-          this.number1++
-        }else{
-          this.servers = []
-        }
-    }
-  }
-}
+      if (!useAuth().IsAuthorized()) {
+        return;
+      }
+
+      let res = await useAuth().getBots();
+      console.log(res);
+      if (res) {
+        this.servers = res;
+        console.log(res);
+        this.number1++;
+      } else {
+        this.servers = [];
+      }
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 .server-list-container {
   display: flex;
   flex-direction: column;
@@ -98,8 +100,7 @@ img {
   display: block;
 }
 .grid {
-
-    z-index: -1;
+  z-index: -1;
 }
 .image1 {
   vertical-align: middle;
@@ -111,7 +112,7 @@ img {
   filter: drop-shadow(rgba(0, 0, 0, 0.16) 0px 32px 72px);
 }
 
-.image1:not([src]){
+.image1:not([src]) {
   vertical-align: middle;
   align-self: center;
   justify-self: center;
@@ -123,9 +124,9 @@ img {
 
 .image2 {
   width: 80px;
-    height: 80px;
-    border-radius: 50px;
-    flex-shrink: 0;
+  height: 80px;
+  border-radius: 50px;
+  flex-shrink: 0;
 }
 
 .buttonthing {
@@ -148,7 +149,7 @@ img {
   margin-bottom: 30px;
 }
 .server-list::-webkit-scrollbar {
-  cursor:grab;
+  cursor: grab;
   display: none;
 }
 .server-container {
@@ -167,70 +168,64 @@ img {
 }
 
 .server-container:hover {
-
   transform: translateY(-0.25em);
 }
 .something {
- text-align: center;
+  text-align: center;
   font-weight: bold;
-    font-size: 16px;
-    line-height: 24px;
-    color: rgb(242, 244, 251);
-    margin-top: 0px;
- 
-    padding: 0px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-}
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(242, 244, 251);
+  margin-top: 0px;
 
+  padding: 0px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 
 .no-server-icon1 {
   width: 80px;
-    height: 80px;
-    border-radius: 40px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: white;
-    font-weight: bold;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    flex-shrink: 0;
-    user-select: none;
+  height: 80px;
+  border-radius: 40px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-weight: bold;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  flex-shrink: 0;
+  user-select: none;
 }
-
 
 .server-background {
   background-position-x: center;
-    background-position-y: center;
-    background-size: cover;
-  
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: initial;
-    position: absolute;
-    inset: 0px;
-    z-index: 1;
-    transform: scale(1.2);
-    filter: blur(10px);
-    opacity: 0.3;
+  background-position-y: center;
+  background-size: cover;
+
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  transform: scale(1.2);
+  filter: blur(10px);
+  opacity: 0.3;
 }
-
-
 
 .server-name {
   font-size: 1.5em;
-  
+
   padding-left: 5px;
   word-wrap: break-word;
 }
-
-
 
 .server-info {
   display: flex;
@@ -257,7 +252,4 @@ h3 {
   padding-left: 10px;
   padding-right: 10px;
 }
-
-
-
 </style>

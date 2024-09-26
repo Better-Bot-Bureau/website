@@ -1,16 +1,12 @@
 <template>
-  
-
-    <NuxtLayout>
-        <NuxtPage />
-    </NuxtLayout>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
 <script setup lang="ts">
 useHead({
-  title: 'Better Bot Bureau',
-  meta: [
-    { name: 'description', content: 'Better Bot Bureau' }
-  ],
-
-})</script>
+  title: "Better Bot Bureau",
+  meta: [{ name: "description", content: "Better Bot Bureau" }],
+});
+</script>

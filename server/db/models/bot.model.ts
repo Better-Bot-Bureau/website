@@ -1,17 +1,41 @@
-import { Schema, model } from "mongoose";
+import { Sequelize, Model, DataTypes } from "sequelize";
 
-interface IBot {
-    id: String, 
-    username: String, 
-    avatar: String,
-    token: String,
+type BotAtrubutes = {
+  id: string;
+  username: string;
+  avatar: string;
+  token: string;
+};
+
+export default class Bot extends Model<BotAtrubutes, BotAtrubutes> {
+  declare id: string;
+  declare username: string;
+  declare avatar: string;
+  declare token: string;
 }
 
-const botSchema = new Schema<IBot>({
-    id: {type: String, required: true}, 
-    username: {type: String, required: true},  
-    avatar: {type: String, required: true}, 
-    token:{type: String, required: true}, 
-})
-
-export default model<IBot>("bot", botSchema)
+export function BotInit(sequelize: Sequelize): void {
+  Bot.init(
+    {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        unique: true,
+      },
+      username: {
+        type: DataTypes.STRING,
+      },
+      avatar: {
+        type: DataTypes.STRING,
+      },
+      token: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+    },
+    {
+      tableName: "Bots",
+      sequelize,
+    },
+  );
+}

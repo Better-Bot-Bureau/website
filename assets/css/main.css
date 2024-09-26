@@ -2,54 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-  :root {
-    --g1: #3b82f6;
-    --g2: rgb(74, 94, 207);
-    margin: 0;
-      padding: 0;
-  }
- 
+:root {
+  --g1: #3b82f6;
+  --g2: rgb(74, 94, 207);
+  margin: 0;
+  padding: 0;
+}
 
-  body {
+body {
+  height: 100vh;
+  background-color: rgb(10, 10, 10);
+}
 
-    height: 100vh;
-   background-color: rgb(10, 10, 10);
-  }
+body::-webkit-scrollbar {
+  width: 0.25rem;
+}
 
-  body::-webkit-scrollbar {
-    width: 0.25rem;
-  }
-  
-  body::-webkit-scrollbar-track {
-    background: #1e1e24;
-  }
-  
-  body::-webkit-scrollbar-thumb {
-    background: var(--g1);
-  }
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
 
-  .link:hover {
-    color: var(--g1);
-    transition: color .1s,background .1s,background-color .1s;
-    cursor: pointer;
-  }
+body::-webkit-scrollbar-thumb {
+  background: var(--g1);
+}
 
-  .link-red:hover {
-    color: #ff1212;
-    transition: color .1s,background .1s,background-color .1s;
-    cursor: pointer;
-  }
+.link:hover {
+  color: var(--g1);
+  transition:
+    color 0.1s,
+    background 0.1s,
+    background-color 0.1s;
+  cursor: pointer;
+}
 
-  .bg-gray-1000 {
-    --tw-bg-opacity: 1;
-   
-    background-color: rgb(12 14 12 / var(--tw-bg-opacity));
-  }
-  
-  .blu {
-    color: var(--g1);
-  }
+.link-red:hover {
+  color: #ff1212;
+  transition:
+    color 0.1s,
+    background 0.1s,
+    background-color 0.1s;
+  cursor: pointer;
+}
 
-  .red {
-    color: #ff1212
-  }
+.bg-gray-1000 {
+  --tw-bg-opacity: 1;
+
+  background-color: rgb(12 14 12 / var(--tw-bg-opacity));
+}
+
+.blu {
+  color: var(--g1);
+}
+
+.red {
+  color: #ff1212;
+}

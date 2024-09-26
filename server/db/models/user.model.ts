@@ -1,19 +1,63 @@
-import { Schema, model, ObjectId, Types } from "mongoose";
+import { Sequelize, Model, DataTypes } from "sequelize";
+import { premium_types } from "~/server/types/enums";
 
-interface IUser {
-    id: String, 
-    username: String,
-    avatar: String,
-    token: String,
-    bots: [any]
+type UserAtrubutes = {
+  id: string;
+  username: string;
+  avatar: string;
+  token: string;
+  bots: string;
+  max_bots: number;
+  premium_bots: string;
+  premium_tier: number;
+};
+
+export default class User extends Model<UserAtrubutes, UserAtrubutes> {
+  declare id: string;
+  declare username: string;
+  declare avatar: string;
+  declare token: string;
+  declare bots: string;
+  declare max_bots: number;
+  declare premium_bots: string;
+  declare premium_tier: number;
 }
 
-const userSchema = new Schema<IUser>({
-    id: {type: String, required: true, unique: true},
-    username: {type: String, required: true},
-    avatar: {type: String, required: true},
-    token: {type: String, required: true},
-    bots: []
-})
-
-export default model<IUser>("user", userSchema);
+export function UserInit(sequelize: Sequelize): void {
+  User.init(
+    {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        unique: true,
+      },
+      username: {
+        type: DataTypes.STRING,
+      },
+      avatar: {
+        type: DataTypes.STRING,
+      },
+      token: {
+        type: DataTypes.STRING,
+        unique: true,
+      },
+      bots: {
+        type: DataTypes.STRING,
+      },
+      max_bots: {
+        type: DataTypes.INTEGER,
+      },
+      premium_bots: {
+        type: DataTypes.STRING,
+      },
+      premium_tier: {
+        type: DataTypes.INTEGER,
+        defaultValue: premium_types.FREE,
+      },
+    },
+    {
+      tableName: "Users",
+      sequelize,
+    },
+  );
+}

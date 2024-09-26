@@ -1,19 +1,14 @@
 <script setup>
 definePageMeta({
-    layout: "dashboard"
-})
+  layout: "dashboard",
+  middleware: ["auth", "checkownsbot"],
+});
 </script>
 
-<template>
-  
-</template>
+<template></template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

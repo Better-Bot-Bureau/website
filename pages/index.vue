@@ -1,19 +1,12 @@
-
-
 <template>
-
- <home-title />
-
+  <home-title />
 </template>
 
 <script>
-import topnav from '../components/topnav.vue'
+import topnav from "../components/topnav.vue";
 export default {
   components: { topnav },
-
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>
