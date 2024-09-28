@@ -41,30 +41,104 @@
               >Home</NuxtLink
             >
           </li>
+
           <li>
-            <NuxtLink
-              to="/about"
-              v-bind:class="{ blu: $route.path == '/about' }"
-              class="link block rounded px-3 py-2 text-white md:p-0"
-              >About</NuxtLink
+            <button
+              id="dropdownDefaultButton"
+              data-dropdown-toggle="dropdown2"
+              data-dropdown-offset-distance="15"
+              class="link inline-flex items-center rounded-lg px-1 py-2.5 text-center text-sm font-medium text-white focus:outline-none"
+              type="button"
             >
-          </li>
-          <li>
-            <NuxtLink
-              to="/modules"
-              v-bind:class="{ blu: $route.path == '/modules' }"
-              class="link block rounded px-3 py-2 text-white md:p-0"
-              >Modules</NuxtLink
+              Modules
+              <svg
+                class="ms-3 h-2.5 w-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div
+              id="dropdown2"
+              style="background: #0c0e0c; box-shadow: 0px 0px 10px"
+              class="fadeIn z-10 hidden w-44 divide-y divide-gray-100 rounded-lg shadow"
             >
+              <ul
+                class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownDefaultButton"
+              >
+                <li>
+                  <a href="#" class="link block px-4 py-2 text-white">test</a>
+                </li>
+                <li>
+                  <a href="#" class="link block px-4 py-2 text-white">test</a>
+                </li>
+                <li>
+                  <a href="#" class="link block px-4 py-2 text-white">test</a>
+                </li>
+                <li>
+                  <a href="#" class="link block px-4 py-2 text-white">test</a>
+                </li>
+              </ul>
+            </div>
           </li>
 
           <li>
-            <NuxtLink
-              to="/services"
-              v-bind:class="{ blu: $route.path == '/services' }"
-              class="link block rounded px-3 py-2 text-white md:p-0"
-              >Services</NuxtLink
+            <button
+              id="dropdownDefaultButton"
+              data-dropdown-toggle="dropdown"
+              data-dropdown-offset-distance="15"
+              class="link inline-flex items-center rounded-lg px-1 py-2.5 text-center text-sm font-medium text-white focus:outline-none"
+              type="button"
             >
+              Support
+              <svg
+                class="ms-3 h-2.5 w-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 4 4 4-4"
+                />
+              </svg>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div
+              id="dropdown"
+              style="background: #0c0e0c; box-shadow: 0px 0px 10px"
+              class="fadeIn z-10 hidden w-44 divide-y divide-gray-100 rounded-lg shadow"
+            >
+              <ul
+                class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownDefaultButton"
+              >
+                <li>
+                  <a
+                    href="https://discord.gg/E9tAYRjys9"
+                    class="link block px-4 py-2 text-white"
+                    >Support Server</a
+                  >
+                </li>
+              </ul>
+            </div>
           </li>
 
           <li>
@@ -85,8 +159,35 @@
   </nav>
 </template>
 
+<script>
+import { useFlowbite } from "~/composables/useFlowbite";
+export default {
+  mounted() {
+    useFlowbite(() => {
+      initFlowbite();
+    });
+  },
+};
+</script>
+
 <style>
 nav {
   z-index: 899999999;
+}
+
+.fadeIn {
+  animation: fadeInAnimation ease-in-out 0.1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 </style>

@@ -143,10 +143,7 @@ definePageMeta({
             <div
               class="bg-gray-1000 peer relative h-5 w-10 rounded-full bg-gray-200 ring-2 ring-blue-800 after:absolute after:start-[4px] after:top-0.5 after:h-4 after:w-4 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:outline-none dark:border-gray-600 rtl:peer-checked:after:-translate-x-full"
             ></div>
-            <span
-              class="text-md ms-3 font-medium text-white"
-              >Moderation</span
-            >
+            <span class="text-md ms-3 font-medium text-white">Moderation</span>
           </label>
         </div>
       </div>
