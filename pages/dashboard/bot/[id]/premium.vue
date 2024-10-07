@@ -7,6 +7,17 @@ definePageMeta({
 
 <template>
   <div class="flex h-full flex-col items-center">
+    <div
+      class="absolute left-0 top-0 flex h-screen w-screen items-center justify-center"
+      style="background: #0c0c0eb3; z-index: 10"
+    >
+      <div
+        class="flex flex-col rounded-md p-5 text-center"
+        style="background: #030303"
+      >
+        <h1 class="font-bold text-white">Premium not yet avaliable</h1>
+      </div>
+    </div>
     <div class="cards">
       <div class="card smol">
         <div class="title">Basic</div>

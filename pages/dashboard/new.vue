@@ -24,9 +24,7 @@ definePageMeta({
           Submit to create your bot
         </h2>
 
-        <label
-          for="default-input"
-          class="mb-2 text-sm font-medium dark:text-white"
+        <label for="default-input" class="mb-2 text-sm font-medium text-white"
           >Bot Token</label
         >
 
@@ -36,7 +34,7 @@ definePageMeta({
             autocomplete="off"
             id="tokeninput"
             v-model="token"
-            class="w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            class="w-full rounded-lg border border-gray-600 bg-gray-700 p-2.5 text-sm text-white focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           />
           <button
             type="button"

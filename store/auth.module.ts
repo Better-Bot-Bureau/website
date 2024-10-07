@@ -4,6 +4,9 @@ import userService from "~/services/user.service";
 export const useAuth = defineStore("auth", {
   state: () => ({
     IsAuthorized: false,
+    bot: {
+      id: "",
+    },
   }),
 
   persist: true,
@@ -30,8 +33,14 @@ export const useAuth = defineStore("auth", {
       return data;
     },
     async getBot(id: String) {
-      let data = await userService.getBot(id);
-      return data;
+      if (this.bot.id !== id) {
+        let data = await userService.getBot(id);
+        this.bot = data as any;
+        this.bot.id = id as string;
+        return data;
+      }
+
+      return this.bot;
     },
     async getGuilds(id: String) {
       let data = await userService.getGuilds(id);
@@ -51,7 +60,8 @@ export const useAuth = defineStore("auth", {
       await userService.restartBot(id);
     },
     async removeBot(id: string) {
-      await userService.removeBot(id);
+      let data = await userService.removeBot(id);
+      return data;
     },
     async changeName(name: string, id: string) {
       await userService.changeName(name, id);

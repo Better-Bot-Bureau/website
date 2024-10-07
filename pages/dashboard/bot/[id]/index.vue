@@ -21,12 +21,12 @@ definePageMeta({
             id="nameinput"
             placeholder="New name"
             style="background-color: #0c0e0c"
-            class="w-full rounded-lg border-2 p-2.5 text-sm text-gray-900 hover:border-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            class="w-full rounded-lg border-2 p-2.5 text-sm text-white hover:border-gray-400 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           />
           <button
             type="button"
             @click="submitname"
-            class="left-1 ms-1 content-center rounded-lg border-2 border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-blue-700 transition-all duration-75 ease-in hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
+            class="left-1 ms-1 content-center rounded-lg border-2 border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-all duration-75 ease-in hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
           >
             Submit
           </button>
@@ -36,19 +36,23 @@ definePageMeta({
     <div class="card bg-dark">
       <div class="card-body">
         <h5 class="card-title font-bold" id="players_online">Bot Status:</h5>
-        <p class="card-text"><span id="connectedPlayers"> N/A</span></p>
+        <p class="card-text">
+          <span id="connectedPlayers">{{
+            BotOnline ? "Online" : "Offline"
+          }}</span>
+        </p>
         <div class="my-5 flex h-11 flex-row">
           <button
             type="button"
             @click="startBot"
-            class="ml-2 w-3/12 rounded-lg border-2 border-green-700 px-5 py-2.5 text-center text-sm font-medium text-green-700 transition-all duration-75 ease-in hover:bg-green-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:bg-green-600 dark:hover:text-white dark:focus:ring-green-800"
+            class="ml-2 w-3/12 rounded-lg border-2 border-green-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-all duration-75 ease-in hover:bg-green-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-green-300 dark:border-green-500 dark:text-green-500 dark:hover:bg-green-600 dark:hover:text-white dark:focus:ring-green-800"
           >
             Start
           </button>
           <button
             type="button"
             @click="stopBot"
-            class="focus:ring- ml-2 w-3/12 rounded-lg border-2 border-red-700 px-5 py-2.5 text-center text-sm font-medium text-red-700 transition-all duration-75 ease-in hover:bg-red-800 hover:text-white focus:outline-none focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-900"
+            class="focus:ring- ml-2 w-3/12 rounded-lg border-2 border-red-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-all duration-75 ease-in hover:bg-red-800 hover:text-white focus:outline-none focus:ring-red-300 dark:border-red-500 dark:text-red-500 dark:hover:bg-red-600 dark:hover:text-white dark:focus:ring-red-900"
           >
             Stop
           </button>
@@ -75,7 +79,7 @@ definePageMeta({
           <button
             type="button"
             @click="submitavatar"
-            class="left-1 ms-1 content-center rounded-lg border-2 border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-blue-700 transition-all duration-75 ease-in hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
+            class="left-1 ms-1 content-center rounded-lg border-2 border-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white transition-all duration-75 ease-in hover:bg-blue-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-300 dark:border-blue-500 dark:text-blue-500 dark:hover:bg-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
           >
             Submit
           </button>
@@ -83,6 +87,7 @@ definePageMeta({
       </div>
     </div>
   </div>
+  <!--
   <div class="m-10 flex flex-row justify-around">
     <div class="card bg-dark">
       <div class="card-body-tall">
@@ -103,6 +108,7 @@ definePageMeta({
       </div>
     </div>
   </div>
+  -->
 
   <div class="m-10 flex flex-row"></div>
 </template>
@@ -118,6 +124,7 @@ export default {
       number1: 0,
       servers: 0,
       bot: { username: "loading..." },
+      BotOnline: false,
       interval: null,
       options: {
         responsive: true,

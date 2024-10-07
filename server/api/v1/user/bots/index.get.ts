@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
     let bot = await Bot.findOne({ where: { id: b } });
 
     if (bot == null) return;
-
+    /*
     let botInfo: userInfoResponse | undefined;
 
     await $fetch("https://discord.com/api/users/@me", {
@@ -43,13 +43,14 @@ export default defineEventHandler(async (event) => {
         avatar: `https://cdn.discordapp.com/avatars/${bot?.id}/${botInfo.avatar}.webp?size=512`,
         id: bot?.id,
       });
-    } else {
-      bots.push({
-        username: botInfo.username,
-        avatar: `https://cdn.discordapp.com/avatars/${bot?.id}/${bot?.avatar}.webp?size=512`,
-        id: bot?.id,
-      });
-    }
+      */
+    //} else {
+    bots.push({
+      username: bot.username,
+      avatar: `https://cdn.discordapp.com/avatars/${bot?.id}/${bot?.avatar}.webp?size=512`,
+      id: bot?.id,
+    });
+    //}
   }
 
   return bots;

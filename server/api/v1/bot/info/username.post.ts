@@ -24,6 +24,7 @@ export default defineEventHandler({
     })
       .then((response) => console.log(response))
       .catch((error) => console.log(error.data));
+    Bot.update({ username: name }, { where: { id: bot.id } });
     return true;
   },
 });

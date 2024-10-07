@@ -74,6 +74,15 @@
         ><QuestionMarkCircleIcon class="mr-1 h-4 w-4" />Support Server</NuxtLink
       >
       <div class="dash-category">Modules</div>
+      <NuxtLink
+        id="support"
+        v-bind:class="{
+          blu: $route.path == `/dashboard/bot/${$route.params.id}/moderation`,
+        }"
+        class="dash-button link font-bold text-white"
+        :to="'/dashboard/bot/' + $route.params.id + '/moderation'"
+        ><MagnifyingGlassCircleIcon class="mr-1 h-4 w-4" />Moderation</NuxtLink
+      >
     </div>
   </div>
 </template>
@@ -87,6 +96,7 @@ import {
   WrenchIcon,
   LinkIcon,
   QuestionMarkCircleIcon,
+  MagnifyingGlassCircleIcon,
 } from "@heroicons/vue/24/solid";
 
 export default {
@@ -99,6 +109,7 @@ export default {
     WrenchIcon,
     LinkIcon,
     QuestionMarkCircleIcon,
+    MagnifyingGlassCircleIcon,
   },
 
   data() {
@@ -118,7 +129,7 @@ export default {
   created() {},
   methods: {
     invite: function () {
-      let win = window.open(
+      window.open(
         `https://discord.com/api/oauth2/authorize?client_id=${this.$route.params.id.split("=")[1]}&permissions=402655248&scope=bot%20applications.commands`,
         "",
         "menubar=no,resizable=no,width=500,height=850",

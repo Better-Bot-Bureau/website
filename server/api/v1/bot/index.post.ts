@@ -24,12 +24,28 @@ export default defineEventHandler(async (event) => {
 
   let bot = await Bot.findOne({ where: { id: botInfo.id } });
 
+  let basemodules = {
+    anti_raid: false,
+    tickets: false,
+    server_management: false,
+    community_management: false,
+    game_integration: false,
+    fun: false,
+    general: false,
+    xp: false,
+    music: false,
+    other: false,
+    utilities: false,
+    economy: false,
+  };
+
   if (bot == null) {
     bot = await Bot.create({
       id: botInfo.id,
       username: botInfo.username,
       avatar: botInfo.avatar,
       token: encrypted_token,
+      modules: JSON.stringify(basemodules),
     });
   } else {
     await Bot.update(
